@@ -1,5 +1,7 @@
 class Repo < ActiveRecord::Base
   
+  validates :owner, :name, presence: true
+  
   protected
   
   def self.update_repos
