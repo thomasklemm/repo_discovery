@@ -1,12 +1,10 @@
 <h1>Repofinder - Category <%= @cat_name %></h1>
-<p>V 0.0.2 - 25. Januar 2012</p>
 
 <table>
 	<tr>
 		<th>Stats</th>
 		<th>Owner / Name</th>
 		<th>Description</th>
-		<th>Tags</th>
 		<th>Last Updated</th>
 		<th>Links</th>
 	</tr>
@@ -19,15 +17,11 @@
 			<span class="forks">Forks: <%= repo.forks %></span>
 		</td>
 		
-		<td class="ident">
-			<a href="<%= repo.html_url %>" target="_blank">
-				<span class="owner"><%= repo.owner %></span>&nbsp;/&nbsp;<span class="name"><%= repo.name %></span>
-			</a>
-		</td>
+		<a href="<%= repo.html_url %>" target="_blank">
+			<td class="ident"><span class="owner"><%= repo.owner %></span> / <span class="name"><%= repo.name %></span></td>
+		</a>
 		
 		<td class="description"><%= repo.description %></td>
-		
-		<td class="Tags"><%= repo.category_list %></td>
 		
 		<td class="last_updated"><%= time_ago_in_words(repo.last_updated) %> ago</td>
 		

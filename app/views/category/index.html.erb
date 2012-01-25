@@ -1,0 +1,15 @@
+<h1>Categories</h1>
+
+<table>
+	<tr>
+		<th>Category</th>
+		<th>Item Number</th>
+	</tr>
+	
+	<% @categories.each do |cat_name, cat_count| %>
+	<tr>
+		<td><a href="/category/<%= cat_name %>"><%= cat_name %></a></td>
+		<td><%= cat_count %></td>
+	</tr>
+	<% end %>
+</table>

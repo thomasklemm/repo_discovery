@@ -1,5 +1,8 @@
 Repofinder::Application.routes.draw do
+
   resources :repo, only: [:index, :create]
+  
+  resources :category, only: [:index, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

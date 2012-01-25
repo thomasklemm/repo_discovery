@@ -2,6 +2,8 @@ class Repo < ActiveRecord::Base
   
   validates :owner, :name, presence: true
   
+  acts_as_taggable_on :categories
+  
   protected
   
   def self.init_repo(repo_id)
