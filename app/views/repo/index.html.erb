@@ -34,6 +34,7 @@
 		
 		<td class="last_updated">
 			<div class="<%= activity_light(repo.last_updated) %>"></div>
+			<p style="font-size: 10px;"><%= time_ago_in_words(repo.last_updated) %> ago</p>
 		</td>
 		
 		<td class="links">
