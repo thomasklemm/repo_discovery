@@ -1,8 +1,11 @@
 Repofinder::Application.routes.draw do
 
-  resources :repo, only: [:index, :create]
-  
+  resources :repo, only: [:index, :create]  
   resources :category, only: [:index, :show]
+  
+  post 'tag' => 'tag#create'
+  delete 'tag' => 'tag#destroy'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
