@@ -39,6 +39,8 @@ class Repo < ActiveRecord::Base
       # Repo speichern
       repo.save
     end
+    
+    puts "Repo.update_repos successfully finished."
   end
     
 end
