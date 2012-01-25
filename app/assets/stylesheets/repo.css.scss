@@ -1,3 +1,12 @@
 // Place all the styles related to the Repo controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.activity { height: 16px; width: 16px; -webkit-border-radius: 100px; -moz-border-radius: 100px; border-radius: 100px;}
+
+.activity.awesomely_active 	{background: darkgreen;}
+.activity.greatly_active 		{background: lightgreen;}
+.activity.active 						{background: yellow;}
+.activity.less_active				{background: orange;}
+.activity.not_active 				{background: red;}

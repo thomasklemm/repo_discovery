@@ -32,7 +32,9 @@
 		
 		<td class="Tags"><%= repo.category_list %></td>
 		
-		<td class="last_updated"><%= time_ago_in_words(repo.last_updated) %> ago</td>
+		<td class="last_updated">
+			<div class="<%= activity_light(repo.last_updated) %>"></div>
+		</td>
 		
 		<td class="links">
 			<a href="<%= repo.html_url %>" class="github_url" target="_blank">Github &raquo;</a>
