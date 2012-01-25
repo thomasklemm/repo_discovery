@@ -17,6 +17,9 @@ end
 # HTTP-Request-Client
 gem 'curb'
 
+# Acts as taggable on
+gem 'acts-as-taggable-on'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
