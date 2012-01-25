@@ -11,7 +11,6 @@ class Repo < ActiveRecord::Base
     github = JSON.parse(Curl::Easy.perform(github_api_url + repo.owner + "/" + repo.name).body_str)
     if github["message"] == "Not Found"
       repo.destroy
-      
     else
       %w{name description watchers forks html_url homepage}.each do |field|
           repo[field] = github[field]

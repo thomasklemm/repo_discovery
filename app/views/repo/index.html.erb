@@ -3,9 +3,11 @@
 
 <table>
 	<tr>
-		<th></th>
+		<th>Stats</th>
 		<th>Owner / Name</th>
-		<th></th>
+		<th>Description</th>
+		<th>Last Updated</th>
+		<th>Links</th>
 	</tr>
 	
 <% @repos.each do |repo| %>
@@ -21,6 +23,8 @@
 		</a>
 		
 		<td class="description"><%= repo.description %></td>
+		
+		<td class="last_updated"><%= time_ago_in_words(repo.last_updated) %> ago</td>
 		
 		<td class="links">
 			<a href="<%= repo.html_url %>" class="github_url" target="_blank">Github &raquo;</a>
