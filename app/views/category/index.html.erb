@@ -1,21 +1,14 @@
 <h1>Categories</h1>
 
-<table>
-	<tr>
-		<th>Category</th>
-		<th>Item Number</th>
-		<th>Popular Repos</th>
-	</tr>
-	
-	<% @categories.each do |cat_name, repos| %>
-	<tr>
-		<td><a href="/category/<%= cat_name %>"><%= cat_name %></a></td>
-		<td><%= repos.length %></td>
-		<td>
-			<% repos.each do |repo| %>
-				<%= repo.name %>
+<% @cats.each do |cat| %>
+	<div class="category">
+		<div class="name"><%= cat.name %></div>
+		<div class="count"><%= cat.count %></div>
+		<div class="description"><%= cat.description %></div>
+		<div class="repos">
+			<% Repo.tagged_with(cat.name, on: :categories).order("watchers DESC").each do |repo| %>
+				<span class="repo"><%= repo.name %></span>
 			<% end %>
-		</td>
-	</tr>
-	<% end %>
-</table>
+		</div>
+	</div>
+<% end %>

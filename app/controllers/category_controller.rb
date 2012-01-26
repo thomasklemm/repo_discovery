@@ -1,16 +1,11 @@
 class CategoryController < ApplicationController
   
   def index
-    # Load List of all tags (as ActAsTaggableOn Objects)
-    # Tag will be accessible via categories.each do |cat| {cat["name"]} 
-    categories = Repo.tag_counts_on(:categories)
+    # Update Category Index
+    Category.update_cats
     
-    @categories = Hash.new
-    categories.each do |category|
-      # Convert Category names to plaintext into a Hash for View
-      # Find out how many repos have been tagged with a certain tag by calling Repo.tagged_with("framework").length
-      @categories[category["name"]] = Repo.tagged_with(category["name"], on: :categories).order("watchers DESC")
-    end
+    # Show only categories in use
+    @cats = Category.where("count > 0").order("count DESC")
     
     respond_to do |format|
       format.html #index.html.erb
