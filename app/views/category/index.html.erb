@@ -4,12 +4,18 @@
 	<tr>
 		<th>Category</th>
 		<th>Item Number</th>
+		<th>Popular Repos</th>
 	</tr>
 	
-	<% @categories.each do |cat_name, cat_count| %>
+	<% @categories.each do |cat_name, repos| %>
 	<tr>
 		<td><a href="/category/<%= cat_name %>"><%= cat_name %></a></td>
-		<td><%= cat_count %></td>
+		<td><%= repos.length %></td>
+		<td>
+			<% repos.each do |repo| %>
+				<%= repo.name %>
+			<% end %>
+		</td>
 	</tr>
 	<% end %>
 </table>

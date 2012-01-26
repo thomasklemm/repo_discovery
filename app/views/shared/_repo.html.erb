@@ -1,0 +1,54 @@
+<div class="repo">
+	
+	<div class="stats">
+		<span class="watchers">Watchers: <%= repo.watchers %></span>
+		<span class="forks">Forks: <%= repo.forks %></span>
+	</div>
+	
+	<div class="ident">
+		<a href="<%= repo.html_url %>" target="_blank">
+			<span class="owner"><%= repo.owner %></span>&nbsp;/&nbsp;<span class="name"><%= repo.name %></span></a>
+	</div>	
+	
+	<div class="description">
+		<%= repo.description %>
+	</div>
+
+	<div class="links">
+		<div class="github">
+			<a href="<%= repo.html_url %>" target="_blank"><%= repo.html_url %></a>
+		</div>
+		<div class="homepage">
+			<a href="<%= repo.homepage %>" target="_blank"><%= repo.homepage %></a>
+		</div>
+		<div class="alternatives">
+			<%= link_to "Alternatives", repo %>
+		</div>
+	</div>
+	
+	<div class="activity">
+		<div class="activity_light <%= activity_light(repo.last_updated) %>">
+		</div>
+		<div class="last_updated">
+			Last updated: &lt; <%= time_ago_in_less_precise_words(repo.last_updated) %> ago.
+		</div>
+	</div>
+	
+	<div class="category_list">
+		Tags:
+		<% repo.categories.each do |cat| %>
+			<span class="category">
+				<a href="/category/<%= cat["name"]%>"><%= cat["name"] %></a>
+			</span>
+		<% end %>
+	</div>
+	
+	<div class="language_list">
+		Languages: <%= repo.language_list %>
+	</div>
+	
+	<div class="framework_list">
+		Frameworks: <%= repo.framework_list %>
+	</div>
+	
+</div> <!-- /.repo -->

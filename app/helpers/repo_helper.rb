@@ -1,7 +1,7 @@
 module RepoHelper
   
   # View Helper
-  def time_ago_in_words_less_precise(last_updated)
+  def time_ago_in_less_precise_words(last_updated)
     # less precise than time_ago_in_words()
     td = Time.now - last_updated
     

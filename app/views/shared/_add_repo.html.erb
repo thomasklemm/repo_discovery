@@ -1,0 +1,12 @@
+<div class="add_repo">
+	<p class="t">Add a new repo</p>
+	<form accept-charset="UTF-8" action="/repo" method="post">
+		<label for="owner">Owner</label> /
+		<label for="name">Name</label>:
+	
+		<input type="text" size="30" id="owner" name="repo[owner]" placeholder="Person or Org. (e.g. 'twitter')"/> /
+		<input type="text" size="30" id="name" name="repo[name]" placeholder="Repo (e.g. 'bootstrap')"/>
+	
+		<input type="submit" value="Add repo" />
+	</form>
+</div>

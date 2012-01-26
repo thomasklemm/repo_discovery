@@ -3,62 +3,12 @@
 
 <a href="/category">Categories</a>
 
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<table>
-	<tr>
-		<th>Stats</th>
-		<th>Owner / Name</th>
-		<th>Description</th>
-		<th>Tags</th>
-		<th>Last Updated</th>
-		<th>Links</th>
-		<th>Manage tags</th>
-	</tr>
-	
-<% @repos.each do |repo| %>
-	<tr class="repo">
-		
-		<td class="stats">
-			<span class="watchers">Watchers: <%= repo.watchers %></span>
-			<span class="forks">Forks: <%= repo.forks %></span>
-		</td>
-		
-		<td class="ident">
-			<a href="<%= repo.html_url %>" target="_blank">
-				<span class="owner"><%= repo.owner %></span>&nbsp;/&nbsp;<span class="name"><%= repo.name %></span>
-			</a>
-		</td>
-		
-		<td class="description"><%= repo.description %></td>
-		
-		<td class="Tags"><%= repo.category_list %></td>
-		
-		<td class="last_updated">
-			<div class="<%= activity_light(repo.last_updated) %>"></div>
-		</td>
-		
-		<td class="links">
-			<a href="<%= repo.html_url %>" class="github_url" target="_blank">Github &raquo;</a>
-			<a href="<%= repo.homepage %>" class="homepage_url" target="_blank">Homepage &raquo;</a>
-			<%= link_to "Show Alternatives", repo %>
-		</td>
-		
-		<td class="add_tag">
-
-		</td>
-		
-	</tr>
 <% end %>
-</table>
 
-<p>Add a new repo</p>
-<form accept-charset="UTF-8" action="/repo" method="post">
-	<label for="owner">Owner</label> /
-	<label for="name">Name</label>
 	
-	<input type="text" size="20" id="owner" name="repo[owner]" /> /
-	<input type="text" size="25" id="name" name="repo[name]" />
-	
-	<input type="submit" value="Add repo" />
-</form>
+<%= render(partial: "shared/repo", collection: @repos ) %>
+
+<%= render(partial: "shared/add_repo" )%>
+

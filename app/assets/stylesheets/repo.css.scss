@@ -2,11 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// Activity Light
+.activity_light { height: 16px; width: 16px; -webkit-border-radius: 100px; -moz-border-radius: 100px; border-radius: 100px;}
+.activity_light.awesomely_active 	{background: darkgreen;}
+.activity_light.greatly_active 		{background: lightgreen;}
+.activity_light.active 						{background: yellow;}
+.activity_light.less_active				{background: orange;}
+.activity_light.not_active 				{background: red;}
 
-.activity { height: 16px; width: 16px; -webkit-border-radius: 100px; -moz-border-radius: 100px; border-radius: 100px;}
 
-.activity.awesomely_active 	{background: darkgreen;}
-.activity.greatly_active 		{background: lightgreen;}
-.activity.active 						{background: yellow;}
-.activity.less_active				{background: orange;}
-.activity.not_active 				{background: red;}
+// Development Styling
+
+.repo {padding: 15px;}

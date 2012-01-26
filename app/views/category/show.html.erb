@@ -1,46 +1,5 @@
 <h1>Repofinder - Category <%= @cat_name %></h1>
 
-<table>
-	<tr>
-		<th>Stats</th>
-		<th>Owner / Name</th>
-		<th>Description</th>
-		<th>Last Updated</th>
-		<th>Links</th>
-	</tr>
-	
-<% @repos.each do |repo| %>
-	<tr class="repo">
-		
-		<td class="stats">
-			<span class="watchers">Watchers: <%= repo.watchers %></span>
-			<span class="forks">Forks: <%= repo.forks %></span>
-		</td>
-		
-		<a href="<%= repo.html_url %>" target="_blank">
-			<td class="ident"><span class="owner"><%= repo.owner %></span> / <span class="name"><%= repo.name %></span></td>
-		</a>
-		
-		<td class="description"><%= repo.description %></td>
-		
-		<td class="last_updated"><%= time_ago_in_words(repo.last_updated) %> ago</td>
-		
-		<td class="links">
-			<a href="<%= repo.html_url %>" class="github_url" target="_blank">Github &raquo;</a>
-			<a href="<%= repo.homepage %>" class="homepage_url" target="_blank">Homepage &raquo;</a>
-		</td>
-		
-	</tr>
-<% end %>
-</table>
+<%= render(partial: "shared/repo", collection: @repos) %>
 
-<p>Add a new repo</p>
-<form accept-charset="UTF-8" action="/repo" method="post">
-	<label for="owner">Owner</label> /
-	<label for="name">Name</label>
-	
-	<input type="text" size="20" id="owner" name="repo[owner]" /> /
-	<input type="text" size="25" id="name" name="repo[name]" />
-	
-	<input type="submit" value="Add repo" />
-</form>
+<%= render(partial: "shared/add_repo" )%>
