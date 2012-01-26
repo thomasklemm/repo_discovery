@@ -12,8 +12,6 @@ class CategoryController < ApplicationController
       @categories[category["name"]] = Repo.tagged_with(category["name"], on: :categories).order("watchers DESC")
     end
     
-    @categories.sort { |a, b| -1* (a[1].length <=> b[1].length)}
-    
     respond_to do |format|
       format.html #index.html.erb
     end  
