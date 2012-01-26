@@ -1,8 +1,9 @@
 class Repo < ActiveRecord::Base
   
   validates :owner, :name, presence: true
+  validates :ident, uniqueness: true
   
-  acts_as_taggable_on :categories
+  acts_as_taggable_on :categories, :frameworks, :languages
   
   protected
   
@@ -13,15 +14,17 @@ class Repo < ActiveRecord::Base
     github = JSON.parse(Curl::Easy.perform(github_api_url + repo.owner + "/" + repo.name).body_str)
     if github["message"] == "Not Found"
       repo.destroy
+      return false
     else
       %w{name description watchers forks html_url homepage}.each do |field|
-          repo[field] = github[field]
+          repo[field] = github[field].strip
       end
-      repo["owner"] = github["owner"]["login"]
+      repo["owner"] = github["owner"]["login"].strip
       repo["last_updated"] = github["updated_at"]
-      repo["ident"] = github["owner"]["login"] + "/" + github["name"]
+      repo["ident"] = github["owner"]["login"].strip + "/" + github["name"].strip
       # Repo speichern
       repo.save
+      return true
     end
   end
   

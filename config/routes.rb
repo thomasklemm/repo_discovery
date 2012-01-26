@@ -1,8 +1,13 @@
 Repofinder::Application.routes.draw do
-
-  resources :repo, only: [:index, :create]  
+  
+  # Repo
+  resources :repo
+  get 'repo/:owner/:name' => 'repo#show'
+  
+  # Category
   resources :category, only: [:index, :show]
   
+  # Tag
   post 'tag' => 'tag#create'
   delete 'tag' => 'tag#destroy'
 

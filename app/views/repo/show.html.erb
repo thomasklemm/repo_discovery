@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+	
+	<a href="<%= @repo.html_url %>">
+		<div class="ident"><%= @repo.ident %></div>
+	</a>
+	
+	<div class="homepage">
+		<a href="<%= @repo.homepage %>"><%= @repo.homepage %></a>
+	</div>
+	
+	<div class="description"><%= @repo.description %></div>
+ 
+	<div class="stats">
+		<span class="watchers"><%= @repo.watchers %></span>
+		<span class="forms"><%= @repo.forks %></span>
+	</div>
+	
+	<div class="last_updated">
+		Updated: &lt; <%= time_ago_in_words_less_precise(@repo.last_updated) %> ago
+	</div>
+	
+	<div class="category_list">
+		<% @repo.categories.each do |cat| %>
+			<span class="category">
+				<a href="/category/<%= cat["name"]%>"><%= cat["name"] %></a>
+			</span>
+		<% end %>
+	</div>
+	
+	<div class="language_list"><%= @repo.language_list %></div>
+	
+	<div class="framework_list"><%= @repo.framework_list %></div>
+	
+	<form action="/tag" method="post">
+		<input type="hidden" name="repo_id" value="<%= @repo.id %>" />
+		<input type="text" size="8" name="tag_name" />
+		<input type="submit" value="Tag: Add" name="add_category">
+		<input type="submit" value="Tag: Remove" name="remove_category">
+		<input type="submit" value="Framework: Add" name="add_framework">
+		<input type="submit" value="Framework: Remove" name="remove_framework">
+		<input type="submit" value="Language: Add" name="add_language">
+		<input type="submit" value="Language: Remove" name="remove_language">
+	</form>	
+	
+	<% if @alternatives %>
+		<% @alternatives.each do |repo| %>
+			<%= repo.name %>
+	  	<%= repo.owner %>
+		  <%= repo.description %>
+		  <%= repo.watchers %>
+		  <%= repo.forks %>
+		  <%= repo.html_url %>
+			<%= repo.homepage %>
+		  <%= repo.last_updated %>
+			<%= repo.category_list %>
+		<% end %>
+	<% end %>
+	
+<%= link_to 'Edit', edit_repo_path(@repo) %> |
+<%= link_to '&lsaquo; Overview'.html_safe, repo_index_path %>

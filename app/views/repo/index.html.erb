@@ -3,6 +3,8 @@
 
 <a href="/category">Categories</a>
 
+<p id="notice"><%= notice %></p>
+
 <table>
 	<tr>
 		<th>Stats</th>
@@ -39,15 +41,11 @@
 		<td class="links">
 			<a href="<%= repo.html_url %>" class="github_url" target="_blank">Github &raquo;</a>
 			<a href="<%= repo.homepage %>" class="homepage_url" target="_blank">Homepage &raquo;</a>
+			<%= link_to "Show Alternatives", repo %>
 		</td>
 		
 		<td class="add_tag">
-			<form action="/tag" method="post">
-				<input type="hidden" name="repo_id" value="<%= repo.id %>" />
-				<input type="text" size="8" name="tag_name" />
-				<input type="submit" value="Add tag">
-				<input type="submit" value="RM tag" name="remove_tag">
-			</form>	
+
 		</td>
 		
 	</tr>
