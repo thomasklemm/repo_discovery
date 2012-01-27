@@ -83,7 +83,7 @@ class RepoController < ApplicationController
           # Validations passed
           if Repo.init_repo(repo.id)
             # Repo could be found on Github
-            format.html { redirect_to "/repo/#{repo.owner}/#{repo.name}", notice: ":-) The repo '#{repo.owner}/#{repo.name}' has been successfully added. Thanks for helping to improve this site!" }
+            format.html { redirect_to "/repo/#{repo.id}", notice: ":-) The repo '#{repo.owner}/#{repo.name}' has been successfully added. Thanks for helping to improve this site!" }
           else
             # Repo could not be found on Github and was deleted
             format.html { redirect_to root_url, notice: "The repo '#{repo.owner}/#{repo.name} could not be found on Github. Please try again."}
@@ -96,7 +96,7 @@ class RepoController < ApplicationController
         
       else
         # Repo already listed  
-        format.html { redirect_to "/repo/#{repo.owner}/#{repo.name}", notice: "Error. The repo '#{repo.owner}/#{repo.name}' is already listed. Maybe you'd like to tag it! Thanks for your help!"}
+        format.html { redirect_to "/repo/#{repo.id}", notice: "Error. The repo '#{repo.owner}/#{repo.name}' is already listed. Maybe you'd like to tag it! Thanks for your help!"}
       end
       
     end
