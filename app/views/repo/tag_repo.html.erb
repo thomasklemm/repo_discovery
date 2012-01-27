@@ -1,19 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%= @url.inspect %>
 
-	<%= render(partial: "shared/repo", object: @repo) %>
+
+<h1>Thanks for bringing  to Discovery!</h1>
+
+<h3>You can easily add some tags for it, if you like:</h3>
 
 	<form action="/tag" method="post">
-		<input type="hidden" name="repo_id" value="<%= @repo.id %>" />
-		<input type="text" size="8" name="tag_name" / autocomplete="off" autofocus="true">
+		<input type="hidden" name="repo_id" value="" />
+		<input type="text" size="8" name="tag_name" / autocomplete="off">
 		<input type="submit" value="Tag: Add" name="add_category">
 		<input type="submit" value="Tag: Remove" name="remove_category">
 		<input type="submit" value="Framework: Add" name="add_framework">
 		<input type="submit" value="Framework: Remove" name="remove_framework">
 		<input type="submit" value="Language: Add" name="add_language">
 		<input type="submit" value="Language: Remove" name="remove_language">
-	</form>	
-	
-	<%= render(partial: "shared/repo", collection: @alternatives ) %>
-	
-<%= link_to 'Edit', edit_repo_path(@repo) %> |
-<%= link_to '&lsaquo; Overview'.html_safe, repo_index_path %>
+	</form>

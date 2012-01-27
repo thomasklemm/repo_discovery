@@ -11,7 +11,10 @@ Repofinder::Application.routes.draw do
   post 'tag' => 'tag#create'
   delete 'tag' => 'tag#destroy'
 
-
+  # Addrepo
+  
+  get 'addrepo' => 'repo#create'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

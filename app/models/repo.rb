@@ -17,11 +17,11 @@ class Repo < ActiveRecord::Base
       return false
     else
       %w{name description watchers forks html_url homepage}.each do |field|
-          repo[field] = github[field].strip
+          repo[field] = github[field]
       end
-      repo["owner"] = github["owner"]["login"].strip
+      repo["owner"] = github["owner"]["login"]
       repo["last_updated"] = github["updated_at"]
-      repo["ident"] = github["owner"]["login"].strip + "/" + github["name"].strip
+      repo["ident"] = github["owner"]["login"] + "/" + github["name"]
       # Repo speichern
       repo.save
       return true

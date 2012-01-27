@@ -50,21 +50,40 @@ class RepoController < ApplicationController
   
     # POST /repo
   def create
+    # Create an empty repo in memory
     repo = Repo.new
-    # Remove leading and trialing whitespace
-    repo.owner = params[:repo][:owner].strip
-    repo.name = params[:repo][:name].strip
-    repo.ident = repo.owner + "/" + repo.name
+    
+    # Var. 1) Github Repo posted to "/addrepo?url="
+    if params[:url]
+      url = params[:url]
+      # Strip url of leading or trailing whitespace
+      # Gsub part of url that is not nescessary
+      ident = url.gsub("https://github.com/", "").strip
+    
+      # Split repo ident
+      repo.owner = ident.split("/")[0]
+      repo.name = ident.split("/")[1]
+      repo.ident = ident
+    end
+  
+    # Var. 2) Github Repo is being added by posting to "/repo" through form
+    if params[:repo]
+      # Remove leading and trialing whitespace
+      repo.owner = params[:repo][:owner].strip
+      repo.name = params[:repo][:name].strip
+      repo.ident = repo.owner + "/" + repo.name
+    end
     
     respond_to do |format|
       if Repo.find_by_ident(repo.ident).nil?
         # Repo is not yet listed
-        if repo.save
+        
+        if repo.save # check validation
         
           # Validations passed
           if Repo.init_repo(repo.id)
             # Repo could be found on Github
-            format.html { redirect_to root_url, notice: ":-) The repo '#{repo.owner}/#{repo.name}' has been successfully added. Thanks for helping to improve this site!" }
+            format.html { redirect_to "/repo/#{repo.owner}/#{repo.name}", notice: ":-) The repo '#{repo.owner}/#{repo.name}' has been successfully added. Thanks for helping to improve this site!" }
           else
             # Repo could not be found on Github and was deleted
             format.html { redirect_to root_url, notice: "The repo '#{repo.owner}/#{repo.name} could not be found on Github. Please try again."}
@@ -77,7 +96,7 @@ class RepoController < ApplicationController
         
       else
         # Repo already listed  
-        format.html { redirect_to root_url, notice: "Error. The repo '#{repo.owner}/#{repo.name}' is already listed. Maybe you'd like to tag it! Thanks for your help!"}
+        format.html { redirect_to "/repo/#{repo.owner}/#{repo.name}", notice: "Error. The repo '#{repo.owner}/#{repo.name}' is already listed. Maybe you'd like to tag it! Thanks for your help!"}
       end
       
     end
