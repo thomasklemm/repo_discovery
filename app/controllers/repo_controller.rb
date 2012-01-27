@@ -95,7 +95,8 @@ class RepoController < ApplicationController
         end
         
       else
-        # Repo already listed  
+        # Repo already listed 
+        repo = Repo.find_by_ident(repo.ident) 
         format.html { redirect_to "/repo/#{repo.id}", notice: "Error. The repo '#{repo.owner}/#{repo.name}' is already listed. Maybe you'd like to tag it! Thanks for your help!"}
       end
       
