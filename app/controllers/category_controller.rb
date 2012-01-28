@@ -21,5 +21,19 @@ class CategoryController < ApplicationController
       format.html #show.html.erb
     end
   end
+  
+  def create
+    input = params[:cat]
+    id = input[:id]
+    desc = input[:description]
+    
+    cat = Category.find(id)
+    cat.description = desc
+    cat.save
+
+    respond_to do |format|
+      format.html {redirect_to "/category", notice: "Changes have been saved."}
+    end
+  end
 
 end

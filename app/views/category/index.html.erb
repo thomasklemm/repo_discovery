@@ -1,10 +1,22 @@
 <h1>Categories</h1>
 
+<a href="?edit=true">Edit category descriptions</a>
+
 <% @cats.each do |cat| %>
 	<div class="category">
-		<div class="name"><%= cat.name %></div>
+		<div class="name"><a href="/category/<%= cat.name %>"><%= cat.name %></a></div>
 		<div class="count"><%= cat.count %></div>
-		<div class="description"><%= cat.description %></div>
+		<% if params[:edit] %>
+			<div class="description_edit">
+				<form action="/category" method="post">
+					<input type="hidden" name="cat[id]" value="<%= cat.id %>" />
+					<input type="text" name="cat[description]" size="<%= size_helper(cat.description) %>" value="<%= cat.description %>">
+					<input type="submit" value="Save changes">
+				</form>
+			</div>
+		<% else %>
+			<div class="description"><%= truncate(cat.description, length: 80) %></div>
+		<% end %>
 		<div class="repos">
 			<% Repo.tagged_with(cat.name, on: :categories).order("watchers DESC").each do |repo| %>
 				<span class="repo"><%= repo.name %></span>
@@ -12,3 +24,5 @@
 		</div>
 	</div>
 <% end %>
+
+

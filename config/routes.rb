@@ -5,7 +5,7 @@ Repofinder::Application.routes.draw do
   get 'repo/:owner/:name' => 'repo#show'
   
   # Category
-  resources :category, only: [:index, :show]
+  resources :category, only: [:index, :show, :create]
   
   # Tag
   post 'tag' => 'tag#create'
@@ -65,7 +65,7 @@ Repofinder::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root to: "repo#index"
+  root to: "category#index"
 
   # See how all your routes lay out with "rake routes"
 
