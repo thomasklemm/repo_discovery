@@ -5,7 +5,7 @@ class CategoryController < ApplicationController
     Category.update_cats
     
     # Show only categories in use
-    @cats = Category.where("count > 0").order("count DESC")
+    @cats = Category.where("count > 0").order("total_watchers DESC")
     
     respond_to do |format|
       format.html #index.html.erb
