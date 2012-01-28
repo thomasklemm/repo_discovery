@@ -7,7 +7,7 @@
 			<a href="/category/<%= cat.name %>">
 			<div class="category_entry">
 				<div class="name left"><a href="/category/<%= cat.name %>"><%= cat.name %></a></div>
-				<div class="count blue label left"><%= cat.count %> repos with <%= print_total_watchers_for_category(cat.name) %> watchers in total</div>
+				<div class="count blue label left"><%= pluralize(cat.count, "repo", "repos") %> with <%= cat.total_watchers %> watchers in total</div>
 				<% if params[:edit] %>
 					<div class="description_edit">
 						<form action="/category" method="post">
