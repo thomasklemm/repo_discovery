@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Repofinder</title>
+  <title>discoverRepos</title>
   <%= stylesheet_link_tag    "application" %>
  	<%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container">
+		<div class="row" id="header">
+		
+			<div class="twelve columns">
+				
+				<div class="left name_slogan">
+					<h1 class="name"><a href="/">discovery!</a></h1>
+					<h3 class="slogan subheader">discover repos of note on <a href="https://github.com/">github</a></h3>
+				</div>
 	
-	<div class="header">
-		<div class="name">discovery!</div>
-		<div class="slogan">discover repos of note on github</div>
-	</div>
-	
-	<div class="navigation">
-		<a href="/category">Categories</a>
-		<a href="/repo">Repos</a>
-	</div>
+				<div class="navigation right">
+					<h3 class="subheader left">
+						<a href="/category" class="<%= is_active?("category") %>">Categories</a>
+						</h3>
+					<h3 class="subheader left">
+						<a href="/repo" class="<%= is_active?("repo") %>">Repos</a>
+						</h3>
+				
+					<!-- <h5 class="greeting">Happy <%= day_name_today %>.</h5> -->
+				</div>
+			
+			</div>
+			
+		</div>
+	</div>	
+
 
 <%= yield %>
 

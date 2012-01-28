@@ -2,19 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.site_title {padding: 10px; margin: 0;}
 
-.categories {
-	
-}
-
-.category {
-	
-	.name 						{}
-	.count 						{}
-	.description 			{}
+.category_entry {
+	background-color: #eee;
+	padding: 10px;
+	width: 440px;
+	margin-bottom: 10px;
+	.name 						{font-size: 21px; margin-bottom: 4px; font-weight: bold;}
+	.count 						{margin-left: 5px; margin-top: 4px;}
+	.total_watchers 	{margin-left: 5px; margin-top: 4px;}
+	.description 			{clear: both; font-size: 16px; line-height: 21px;}
 	.description_edit {}
 	.repos {
-		
-		.repo 					{}
+		font-size: 16px; line-height: 21px;
+		span 					{margin: 0; padding: 0;}
 	}
 }

@@ -3,9 +3,21 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
+ *= require foundation
  *= require_tree . 
 */
 
+#header {
+	background-color: #eee;
+	.name_slogan {margin-left: 10px;}
+	
+	.name {margin: 0;}
+	.slogan {margin: 0;}	
+}
+
 .navigation {
-	a 	{padding: 10px 20px; background: #ccc;}
+	margin-top: 25px;
+	margin-right: 22px;
+	a 	{padding: 10px 20px; margin-left: 5px;}
+	a:hover, a.active {background: #ccc; color: #000;}
 }

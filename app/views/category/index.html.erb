@@ -1,28 +1,40 @@
-<h1>Categories</h1>
-
-<a href="?edit=true">Edit category descriptions</a>
-
-<% @cats.each do |cat| %>
-	<div class="category">
-		<div class="name"><a href="/category/<%= cat.name %>"><%= cat.name %></a></div>
-		<div class="count"><%= cat.count %></div>
-		<% if params[:edit] %>
-			<div class="description_edit">
-				<form action="/category" method="post">
-					<input type="hidden" name="cat[id]" value="<%= cat.id %>" />
-					<input type="text" name="cat[description]" size="<%= size_helper(cat.description) %>" value="<%= cat.description %>">
-					<input type="submit" value="Save changes">
-				</form>
+<div class="container">
+	<div class="row">
+		<div class="twelve columns">
+			<h2 class="site_title">All Tags</h2>
+			
+			<% @cats.each do |cat| %>
+			<a href="/category/<%= cat.name %>">
+			<div class="category_entry">
+				<div class="name left"><a href="/category/<%= cat.name %>"><%= cat.name %></a></div>
+				<div class="count blue label left"><%= cat.count %> repos with <%= print_total_watchers_for_category(cat.name) %> watchers in total</div>
+				<% if params[:edit] %>
+					<div class="description_edit">
+						<form action="/category" method="post">
+							<input type="hidden" name="cat[id]" value="<%= cat.id %>" />
+							<input type="text" name="cat[description]" size="<%= size_helper(cat.description) %>" value="<%= cat.description %>">
+							<input type="submit" value="Save changes">
+						</form>
+					</div>
+				<% else %>
+					<div class="description"><%= truncate(cat.description, length: 115) %></div>
+				<% end %>
+				<div class="repos">
+					<a href="/category/<%= cat.name %>">Top repos:</a>
+					<%= print_top_repos_for_category(cat.name) %>
+				</div>
 			</div>
-		<% else %>
-			<div class="description"><%= truncate(cat.description, length: 80) %></div>
 		<% end %>
-		<div class="repos">
-			<% Repo.tagged_with(cat.name, on: :categories).order("watchers DESC").each do |repo| %>
-				<span class="repo"><%= repo.name %></span>
-			<% end %>
+			
+			<a href="?edit=true" class="small white button">Edit tag descriptions</a>
+			
 		</div>
 	</div>
-<% end %>
+</div>
+
+
+
+
+
 
 
