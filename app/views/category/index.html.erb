@@ -3,30 +3,47 @@
 		<div class="twelve columns">
 			<h2 class="site_title">All Tags</h2>
 			
-			<% @cats.each do |cat| %>
-			<a href="/category/<%= cat.name %>">
-			<div class="category_entry">
-				<div class="name left"><a href="/category/<%= cat.name %>"><%= cat.name %></a></div>
-				<div class="count blue label left"><%= pluralize(cat.count, "repo", "repos") %> with <%= cat.total_watchers %> watchers in total</div>
-				<% if params[:edit] %>
-					<div class="description_edit">
-						<form action="/category" method="post">
-							<input type="hidden" name="cat[id]" value="<%= cat.id %>" />
-							<input type="text" name="cat[description]" size="<%= size_helper(cat.description) %>" value="<%= cat.description %>">
-							<input type="submit" value="Save changes">
-						</form>
-					</div>
-				<% else %>
-					<div class="description"><%= truncate(cat.description, length: 115) %></div>
-				<% end %>
-				<div class="repos">
-					<a href="/category/<%= cat.name %>">Top repos:</a>
-					<%= print_top_repos_for_category(cat.name) %>
-				</div>
+			<div id="category-list">
+				
+				<input class="search input-text large oversize" type="search" placeholder="Find on discovery!" autofocus="true">
+				<span class="sort_by">Sort by</span>
+				<span class="sort small white radius button" data-sort="name">name</span>
+				<span class="sort small white radius button" data-sort="count">No. of repos</span>
+				<span class="sort small white radius button" data-sort="name">No. of total watchers</span>
+				
+				<ul class="list">
+					<% @cats.each do |cat| %>
+					<li>
+						<div class="name left"><a href="/category/<%= cat.name %>"><%= cat.name %></a></div>
+						<div class="stats blue label left"><span class="count" style="display: none;"><%= cat.count %></span><%= pluralize(cat.count, "repo", "repos") %> with<span class="total_watchers"><%= cat.total_watchers %></span> watchers in total</div>
+						<% if params[:edit] %>
+							<div class="description_edit">
+								<form action="/category" method="post">
+									<input type="hidden" name="cat[id]" value="<%= cat.id %>" />
+									<input type="text" name="cat[description]" size="<%= size_helper(cat.description) %>" value="<%= cat.description %>">
+									<input type="submit" value="Save changes">
+								</form>
+							</div>
+						<% else %>
+							<div class="description"><%= truncate(cat.description, length: 115) %></div>
+						<% end %>
+						<div class="repos">
+							<a href="/category/<%= cat.name %>">Top repos:</a>
+							<%= print_top_repos_for_category(cat.name) %>
+						</div>
+					</li>
+					<% end %>
+				</ul>
 			</div>
-		<% end %>
 			
-			<a href="?edit=true" class="small white button">Edit tag descriptions</a>
+			<script>
+				var options = {valueNames: ['name', 'count', 'total_watchers', 'description', 'repos']};
+				
+				var categoryList = new List('category-list', options);
+			</script>
+			
+				
+		<a href="?edit=true" class="small white button">Edit tag descriptions</a>
 			
 		</div>
 	</div>
